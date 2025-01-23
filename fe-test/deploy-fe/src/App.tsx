@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -11,7 +11,7 @@ function App() {
   // /api 호출 함수
   const handleHelloApiRequest = () => {
     axios
-      .get('http://localhost:8080/api') // /api 호출
+      .get('https://ssafygwangjuc1.duckdns.org/api') // /api 호출
       .then((response) => {
         setApiResponse(response.data); // API 응답 저장
       })
@@ -23,7 +23,7 @@ function App() {
   // /api/test 호출 함수
   const handleTestApiRequest = () => {
     axios
-      .get('http://localhost:8080/api/test') // /api/test 호출
+      .get('https://ssafygwangjuc1.duckdns.org/api/test') // /api/test 호출
       .then((response) => {
         setApiResponse(response.data); // API 응답 저장
       })
