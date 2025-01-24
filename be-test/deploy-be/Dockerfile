@@ -1,16 +1,21 @@
-# Dockerfile
-FROM openjdk:17-jdk-alpine
+# Gradle Build Stage
+FROM gradle:7.5.1-jdk17-alpine AS build
+WORKDIR /home/gradle/app
+COPY --chown=gradle:gradle . .
+RUN gradle build --no-daemon
 
+# Application Stage
+FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
-# 빌드된 JAR 파일 경로를 지정 (Gradle 빌드 아웃풋 기준)
-ARG JAR_FILE=build/libs/*.jar
+# Timezone 환경 변수 설정
+ENV TZ=Asia/Seoul
 
-# JAR 파일을 컨테이너로 복사
-COPY ${JAR_FILE} app.jar
+# 빌드된 JAR 파일 복사
+COPY --from=build /home/gradle/app/build/libs/*.jar app.jar
 
-# 애플리케이션에서 사용하는 포트를 공개
+# 애플리케이션 포트 노출
 EXPOSE 8081
 
-# 애플리케이션 실행 명령
-ENTRYPOINT ["java", "-Duser.timezone=Asia/Seoul", "-jar", "app.jar"]
+# 애플리케이션 실행
+ENTRYPOINT ["java", "-jar", "app.jar"]
