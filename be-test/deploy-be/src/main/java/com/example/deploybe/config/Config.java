@@ -10,7 +10,7 @@ public class Config implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("https://ssafygwangjuc1.duckdns.org", "https://t1217.p.ssafy.io")
+                .allowedOrigins("https://ssafygwangjuc1.duckdns.org", "https://t1217.p.ssafy.io", "http://localhost:5173")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowCredentials(true);
     }

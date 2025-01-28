@@ -23,7 +23,7 @@ function App() {
   // /api/test 호출 함수
   const handleTestApiRequest = () => {
     axios
-      .get('https://ssafygwangjuc1.duckdns.org/api/test') // /api/test 호출
+      .get('https://ssafygwangjuc1.duckdns.org:8081/api/test') // /api/test 호출
       .then((response) => {
         setApiResponse(response.data); // API 응답 저장
       })
