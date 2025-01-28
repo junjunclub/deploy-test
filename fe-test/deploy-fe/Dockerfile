@@ -10,10 +10,10 @@ COPY . .
 RUN npm run build
 
 #Nginx
-FROM nginx:latest
+FROM nginx:alpine
 RUN rm -f /etc/nginx/conf.d/default.conf
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
