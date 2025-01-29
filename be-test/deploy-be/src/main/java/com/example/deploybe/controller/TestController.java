@@ -14,7 +14,7 @@ public class TestController {
 
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
-    @GetMapping
+    @GetMapping("/")
     public String hello(HttpServletRequest request) {
         logger.info("HELLO Request URL: {}", request.getRequestURL());
         return "Hello World";
